@@ -325,12 +325,6 @@ const Shop = () => {
                   alt={selectedProduct.name}
                   className="w-full h-48 xs:h-56 sm:h-64 object-cover"
                 />
-                <button
-                  onClick={handleCloseModal}
-                  className="absolute top-3 right-3 text-white hover:text-gray-300 p-2 bg-black/50 hover:bg-black/70 rounded-lg transition-colors backdrop-blur-sm"
-                >
-                  <X className="w-4 h-4 sm:w-5 sm:h-5" />
-                </button>
               </div>
 
               <div className="lg:flex lg:flex-row">
