@@ -335,7 +335,7 @@ const Shop = () => {
 
               <div className="lg:flex lg:flex-row">
                 <div className="p-4 sm:p-6 lg:p-8 lg:w-1/2">
-                  <div className="flex items-start justify-between mb-4 sm:mb-6 lg:hidden">
+                  <div className="flex items-start justify-between mb-4 sm:mb-6">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
                         <Badge variant="outline" className="text-xs">
@@ -351,31 +351,6 @@ const Shop = () => {
                         {selectedProduct.name}
                       </h2>
                     </div>
-                  </div>
-
-                  {/* Desktop header - hidden on mobile */}
-                  <div className="hidden lg:flex items-start justify-between mb-6">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Badge variant="outline" className="text-xs">
-                          {selectedProduct.category}
-                        </Badge>
-                        {selectedProduct.badge && (
-                          <Badge className="bg-adac-orange text-white text-xs">
-                            {selectedProduct.badge}
-                          </Badge>
-                        )}
-                      </div>
-                      <h2 className="font-display text-xl lg:text-2xl font-bold text-gray-900 mb-2 leading-tight">
-                        {selectedProduct.name}
-                      </h2>
-                    </div>
-                    <button
-                      onClick={handleCloseModal}
-                      className="text-gray-400 hover:text-gray-600 p-2 hover:bg-gray-100 rounded-lg transition-colors"
-                    >
-                      <X className="w-5 h-5" />
-                    </button>
                   </div>
 
                   <Button 
