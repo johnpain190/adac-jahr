@@ -4,16 +4,25 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { Gift, Check, Truck, Star } from "lucide-react";
+import LoadingScreen from "./LoadingScreen";
 
 const AnniversaryCard = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted:", { email, password });
+    if (email && password) {
+      setIsLoading(true);
+      // Simulate form processing
+      console.log("Form submitted:", { email, password });
+    }
   };
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <Card className="w-full card-shadow bg-card">
