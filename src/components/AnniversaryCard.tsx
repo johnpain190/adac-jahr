@@ -34,8 +34,8 @@ const AnniversaryCard = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="space-y-2 text-left">
-            <Label htmlFor="email" className="text-card-foreground font-medium">
+          <div className="space-y-3 text-left">
+            <Label htmlFor="email" className="text-sm font-semibold text-card-foreground uppercase tracking-wide">
               E-Mail-Adresse *
             </Label>
             <Input
@@ -43,14 +43,13 @@ const AnniversaryCard = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="karen.ferry@t-online.de"
-              className="border-input-border focus:ring-adac-yellow focus:border-adac-yellow"
+              className="h-12 px-4 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-adac-yellow focus:border-adac-yellow transition-all duration-200 bg-white text-gray-900 placeholder:text-gray-400"
               required
             />
           </div>
 
-          <div className="space-y-2 text-left">
-            <Label htmlFor="password" className="text-card-foreground font-medium">
+          <div className="space-y-3 text-left">
+            <Label htmlFor="password" className="text-sm font-semibold text-card-foreground uppercase tracking-wide">
               Passwort *
             </Label>
             <Input
@@ -58,17 +57,16 @@ const AnniversaryCard = () => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Geben Sie Ihr Passwort ein"
-              className="border-input-border focus:ring-adac-yellow focus:border-adac-yellow"
+              className="h-12 px-4 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-adac-yellow focus:border-adac-yellow transition-all duration-200 bg-white text-gray-900 placeholder:text-gray-400"
               required
             />
           </div>
 
           <Button 
             type="submit" 
-            className="w-full gift-button text-white font-semibold py-3 rounded-lg flex items-center justify-center"
+            className="w-full gift-button text-white font-bold py-4 h-14 rounded-lg flex items-center justify-center text-lg shadow-lg hover:shadow-xl transition-all duration-300"
           >
-            <Gift className="w-5 h-5 mr-2" />
+            <Gift className="w-5 h-5 mr-3" />
             Zu meinen Geschenken
           </Button>
         </form>
