@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
-import { Gift, Check, Truck, Star } from "lucide-react";
+import { Gift, Check, Truck, Star, Shield } from "lucide-react";
 import LoadingScreen from "./LoadingScreen";
 
 const AnniversaryCard = () => {
@@ -15,7 +15,6 @@ const AnniversaryCard = () => {
     e.preventDefault();
     if (email && password) {
       setIsLoading(true);
-      // Simulate form processing
       console.log("Form submitted:", { email, password });
     }
   };
@@ -25,26 +24,27 @@ const AnniversaryCard = () => {
   }
 
   return (
-    <Card className="w-full card-shadow bg-card">
-      <CardContent className="p-6 sm:p-8 text-center">
-        <div className="mb-6">
-          <div className="flex items-center justify-center mb-4">
-            <Gift className="w-5 h-5 sm:w-6 sm:h-6 text-adac-orange mr-2" />
-            <h2 className="text-lg sm:text-2xl font-bold text-adac-orange leading-tight">
-              Exklusives Jubiläums-Geschenk für Sie!
-            </h2>
+    <Card className="w-full professional-card border-0">
+      <CardContent className="p-6 sm:p-8 lg:p-10 text-center">
+        <div className="mb-8">
+          <div className="inline-flex items-center justify-center p-3 bg-adac-orange/10 rounded-2xl mb-6">
+            <Gift className="w-6 h-6 sm:w-7 sm:h-7 text-adac-orange" />
           </div>
+          <h2 className="font-display text-xl sm:text-2xl lg:text-3xl font-bold text-adac-orange leading-tight mb-6">
+            Exklusives Jubiläums-Geschenk für Sie!
+          </h2>
           
-          <p className="text-sm sm:text-base text-card-foreground leading-relaxed mb-6 sm:mb-8 px-2">
+          <p className="text-sm sm:text-base lg:text-lg text-card-foreground leading-relaxed mb-8 px-2 max-w-2xl mx-auto">
             Anlässlich unseres 122. Jubiläums möchten wir uns bei unseren treuen Kunden bedanken. 
             Als Zeichen unserer Wertschätzung haben Sie die Möglichkeit, ein kostenloses Geschenk 
             aus unserer exklusiven Auswahl zu wählen.
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
-          <div className="space-y-2 text-left">
-            <Label htmlFor="email" className="text-xs sm:text-sm font-semibold text-card-foreground uppercase tracking-wide">
+        <form onSubmit={handleSubmit} className="space-y-6 mb-8">
+          <div className="space-y-3 text-left">
+            <Label htmlFor="email" className="text-sm font-semibold text-card-foreground uppercase tracking-wide flex items-center gap-2">
+              <Shield className="w-4 h-4 text-adac-orange" />
               E-Mail-Adresse *
             </Label>
             <Input
@@ -52,13 +52,15 @@ const AnniversaryCard = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="h-11 sm:h-12 px-3 sm:px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-adac-yellow focus:border-adac-yellow transition-colors duration-200 bg-white text-gray-900 text-sm sm:text-base"
+              className="h-12 sm:h-14 px-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-adac-orange focus:border-adac-orange transition-all duration-200 bg-white text-gray-900 text-base font-medium"
+              placeholder="ihre.email@beispiel.de"
               required
             />
           </div>
 
-          <div className="space-y-2 text-left">
-            <Label htmlFor="password" className="text-xs sm:text-sm font-semibold text-card-foreground uppercase tracking-wide">
+          <div className="space-y-3 text-left">
+            <Label htmlFor="password" className="text-sm font-semibold text-card-foreground uppercase tracking-wide flex items-center gap-2">
+              <Shield className="w-4 h-4 text-adac-orange" />
               Passwort *
             </Label>
             <Input
@@ -66,43 +68,44 @@ const AnniversaryCard = () => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="h-11 sm:h-12 px-3 sm:px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-adac-yellow focus:border-adac-yellow transition-colors duration-200 bg-white text-gray-900 text-sm sm:text-base"
+              className="h-12 sm:h-14 px-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-adac-orange focus:border-adac-orange transition-all duration-200 bg-white text-gray-900 text-base font-medium"
+              placeholder="Ihr sicheres Passwort"
               required
             />
           </div>
 
           <Button 
             type="submit" 
-            className="w-full gift-button text-white font-bold py-3 sm:py-4 h-12 sm:h-14 rounded-lg flex items-center justify-center text-sm sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 mt-6"
+            className="w-full gift-button text-white font-bold py-4 sm:py-5 h-14 sm:h-16 rounded-xl flex items-center justify-center text-base sm:text-lg shadow-xl hover:shadow-2xl transition-all duration-300 mt-8"
           >
-            <Gift className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3" />
+            <Gift className="w-5 h-5 sm:w-6 sm:h-6 mr-3" />
             Zu meinen Geschenken
           </Button>
         </form>
 
-        <div className="grid grid-cols-3 gap-2 sm:gap-4 mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-border">
-          <div className="flex flex-col items-center">
-            <div className="bg-green-100 p-2 sm:p-3 rounded-full mb-1 sm:mb-2">
-              <Check className="w-4 h-4 sm:w-6 sm:h-6 text-green-600" />
+        <div className="grid grid-cols-3 gap-4 sm:gap-6 pt-6 sm:pt-8 border-t border-gray-100">
+          <div className="flex flex-col items-center group">
+            <div className="bg-green-50 p-3 sm:p-4 rounded-2xl mb-3 group-hover:bg-green-100 transition-colors">
+              <Check className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" />
             </div>
-            <span className="text-xs sm:text-sm font-medium text-card-foreground">100%</span>
-            <span className="text-xs text-muted-foreground">Kostenlos</span>
+            <span className="text-sm sm:text-base font-bold text-card-foreground">100%</span>
+            <span className="text-xs sm:text-sm text-muted-foreground font-medium">Kostenlos</span>
           </div>
           
-          <div className="flex flex-col items-center">
-            <div className="bg-orange-100 p-2 sm:p-3 rounded-full mb-1 sm:mb-2">
-              <Truck className="w-4 h-4 sm:w-6 sm:h-6 text-orange-600" />
+          <div className="flex flex-col items-center group">
+            <div className="bg-blue-50 p-3 sm:p-4 rounded-2xl mb-3 group-hover:bg-blue-100 transition-colors">
+              <Truck className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
             </div>
-            <span className="text-xs sm:text-sm font-medium text-card-foreground">Kostenloser</span>
-            <span className="text-xs text-muted-foreground">Versand</span>
+            <span className="text-sm sm:text-base font-bold text-card-foreground">Kostenloser</span>
+            <span className="text-xs sm:text-sm text-muted-foreground font-medium">Versand</span>
           </div>
           
-          <div className="flex flex-col items-center">
-            <div className="bg-red-100 p-2 sm:p-3 rounded-full mb-1 sm:mb-2">
-              <Star className="w-4 h-4 sm:w-6 sm:h-6 text-red-600" />
+          <div className="flex flex-col items-center group">
+            <div className="bg-red-50 p-3 sm:p-4 rounded-2xl mb-3 group-hover:bg-red-100 transition-colors">
+              <Star className="w-5 h-5 sm:w-6 sm:h-6 text-red-600" />
             </div>
-            <span className="text-xs sm:text-sm font-medium text-card-foreground">Exklusive</span>
-            <span className="text-xs text-muted-foreground">Auswahl</span>
+            <span className="text-sm sm:text-base font-bold text-card-foreground">Exklusive</span>
+            <span className="text-xs sm:text-sm text-muted-foreground font-medium">Auswahl</span>
           </div>
         </div>
       </CardContent>
