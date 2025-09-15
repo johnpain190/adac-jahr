@@ -76,9 +76,11 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        serif: ['Playfair Display', 'Georgia', 'serif'],
-        display: ['Playfair Display', 'Georgia', 'serif'],
+        sans: ['Source Sans Pro', 'Roboto', 'Open Sans', 'system-ui', 'sans-serif'],
+        serif: ['Source Sans Pro', 'system-ui', 'sans-serif'],
+        display: ['Source Sans Pro', 'Roboto', 'system-ui', 'sans-serif'],
+        body: ['Source Sans Pro', 'Open Sans', 'system-ui', 'sans-serif'],
+        heading: ['Source Sans Pro', 'Roboto', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
         lg: "var(--radius)",
