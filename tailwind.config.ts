@@ -19,9 +19,18 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        
+        // ADAC Brand Colors
+        "adac-yellow": "hsl(var(--adac-yellow))",
+        "adac-yellow-dark": "hsl(var(--adac-yellow-dark))",
+        "adac-yellow-light": "hsl(var(--adac-yellow-light))",
+        "adac-orange": "hsl(var(--adac-orange))",
+        "adac-blue": "hsl(var(--adac-blue))",
+        
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          hover: "hsl(var(--primary-hover))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",

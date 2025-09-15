@@ -1,11 +1,15 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import AdacHeader from "@/components/AdacHeader";
+import AnniversaryCard from "@/components/AnniversaryCard";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <div className="min-h-screen adac-gradient">
+      <div className="container mx-auto px-4">
+        <AdacHeader />
+        
+        <main className="flex justify-center items-center pb-16">
+          <AnniversaryCard />
+        </main>
       </div>
     </div>
   );
