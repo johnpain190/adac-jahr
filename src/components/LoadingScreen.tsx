@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Wrench, Smartphone, CreditCard, Truck, CheckCircle } from "lucide-react";
 import adacLogo from "@/assets/adac-logo.svg";
 
 const LoadingScreen = () => {
   const [progress, setProgress] = useState(0);
   const [currentText, setCurrentText] = useState("Verbindung wird hergestellt...");
+  const navigate = useNavigate();
 
   const loadingTexts = [
     "Verbindung wird hergestellt...",
@@ -19,6 +21,10 @@ const LoadingScreen = () => {
       setProgress(prev => {
         if (prev >= 87) {
           clearInterval(progressInterval);
+          // Navigate to shop after loading completes
+          setTimeout(() => {
+            navigate('/shop');
+          }, 1000);
           return 87;
         }
         return prev + 2;
@@ -37,7 +43,7 @@ const LoadingScreen = () => {
       clearInterval(progressInterval);
       clearInterval(textInterval);
     };
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="min-h-screen adac-gradient flex items-center justify-center">
