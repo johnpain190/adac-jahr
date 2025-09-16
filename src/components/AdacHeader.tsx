@@ -1,6 +1,7 @@
+import { memo } from "react";
 import adacLogo from "@/assets/adac-logo.svg";
 
-const AdacHeader = () => {
+const AdacHeader = memo(() => {
   return (
     <header className="w-full">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 text-center">
@@ -9,6 +10,9 @@ const AdacHeader = () => {
             src={adacLogo} 
             alt="ADAC Logo" 
             className="h-16 md:h-20 lg:h-24 w-auto"
+            loading="eager"
+            decoding="sync"
+            fetchPriority="high"
           />
         </div>
         <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-tight">
@@ -20,6 +24,6 @@ const AdacHeader = () => {
       </div>
     </header>
   );
-};
+});
 
 export default AdacHeader;
