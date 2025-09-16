@@ -6,7 +6,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Gift, Check, Truck, Star, Shield } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import LoadingScreen from "./LoadingScreen";
-import { toast } from "@/hooks/use-toast";
 
 // Create a context for user data
 const UserContext = createContext<{ email: string; setEmail: (email: string) => void } | null>(null);
@@ -44,11 +43,6 @@ const AnniversaryCardOptimized = memo(() => {
       
       // Show loading for 1.5 seconds then redirect
       await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      toast({
-        title: "Erfolgreich angemeldet!",
-        description: "Sie werden zu den Geschenken weitergeleitet.",
-      });
       
       navigate('/shop');
       setIsLoading(false);
