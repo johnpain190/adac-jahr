@@ -212,14 +212,11 @@ const ShopOptimized = memo(() => {
       </header>
 
       <div className="container mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
-        {/* Welcome section with user email */}
+        {/* Welcome section */}
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
           <h1 className="font-display text-2xl xs:text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground mb-3 sm:mb-4 lg:mb-6 leading-tight px-2">
-            Hallo {userEmail ? userEmail : 'Kunde'}!
-          </h1>
-          <h2 className="font-display text-xl xs:text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-3 sm:mb-4 lg:mb-6 leading-tight px-2">
             122 Jahre ADAC - Ein Grund zum Feiern!
-          </h2>
+          </h1>
           <p className="text-sm sm:text-lg lg:text-xl text-foreground/90 mb-6 sm:mb-8 max-w-4xl mx-auto leading-relaxed px-4">
             Anlässlich unseres 122. Jubiläums möchten wir uns bei unseren treuen Mitgliedern und Kunden bedanken
           </p>
@@ -237,7 +234,7 @@ const ShopOptimized = memo(() => {
             
             <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6 text-foreground/90 px-2">
               <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
-                Seit 122 Jahren steht der ADAC seinen Mitgliedern zur Seite. Als Zeichen unserer Dankbarkeit 
+                Hallo {userEmail ? userEmail : 'Kunde'}! Seit 122 Jahren steht der ADAC seinen Mitgliedern zur Seite. Als Zeichen unserer Dankbarkeit 
                 für Ihr Vertrauen und Ihre Treue, haben wir eine exklusive Auswahl hochwertiger Produkte 
                 zusammengestellt, die wir Ihnen <strong className="text-foreground">völlig kostenlos</strong> als Geschenk anbieten.
               </p>
