@@ -9,12 +9,12 @@ const LoadingScreen = () => {
   const navigate = useNavigate();
 
   const loadingSteps = [
-    { text: "Anmeldung wird verarbeitet...", icon: Shield, color: "text-blue-500" },
-    { text: "Sicherheitsprüfung läuft...", icon: Check, color: "text-green-500" },
-    { text: "Jubiläums-Katalog wird geladen...", icon: Gift, color: "text-adac-orange" },
-    { text: "Geschenke werden vorbereitet...", icon: Award, color: "text-purple-500" },
-    { text: "Versandoptionen werden geprüft...", icon: Truck, color: "text-indigo-500" },
-    { text: "Finalisierung...", icon: Star, color: "text-yellow-500" }
+    { text: "Anmeldung wird verarbeitet...", icon: Shield, color: "text-gray-700" },
+    { text: "Sicherheitsprüfung läuft...", icon: Check, color: "text-gray-800" },
+    { text: "Jubiläums-Katalog wird geladen...", icon: Gift, color: "text-black" },
+    { text: "Geschenke werden vorbereitet...", icon: Award, color: "text-gray-700" },
+    { text: "Versandoptionen werden geprüft...", icon: Truck, color: "text-gray-800" },
+    { text: "Finalisierung...", icon: Star, color: "text-black" }
   ];
 
   const updateText = useCallback(() => {
@@ -26,23 +26,23 @@ const LoadingScreen = () => {
   }, [loadingSteps.length]);
 
   useEffect(() => {
-    // Progress animation
+    // Slower progress animation
     const progressInterval = setInterval(() => {
       setProgress(prev => {
-        const newProgress = prev + Math.random() * 3 + 1; // Variable speed for realism
+        const newProgress = prev + Math.random() * 1.5 + 0.5; // Much slower speed
         if (newProgress >= 100) {
           clearInterval(progressInterval);
           setTimeout(() => {
             navigate('/shop');
-          }, 1000);
+          }, 1200);
           return 100;
         }
         return newProgress;
       });
-    }, 60);
+    }, 120); // Slower interval
 
     // Text rotation
-    const textInterval = setInterval(updateText, 1800);
+    const textInterval = setInterval(updateText, 2200); // Slower text changes
 
     return () => {
       clearInterval(progressInterval);
@@ -55,20 +55,20 @@ const LoadingScreen = () => {
 
   return (
     <div className="min-h-screen adac-gradient flex items-center justify-center relative overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-10 w-20 h-20 bg-white rounded-full animate-bounce" style={{ animationDelay: '0s', animationDuration: '3s' }}></div>
-        <div className="absolute top-40 right-20 w-16 h-16 bg-white rounded-full animate-bounce" style={{ animationDelay: '1s', animationDuration: '4s' }}></div>
-        <div className="absolute bottom-32 left-1/4 w-12 h-12 bg-white rounded-full animate-bounce" style={{ animationDelay: '2s', animationDuration: '5s' }}></div>
-        <div className="absolute bottom-20 right-1/3 w-14 h-14 bg-white rounded-full animate-bounce" style={{ animationDelay: '0.5s', animationDuration: '3.5s' }}></div>
+      {/* Animated Background Elements - matching landing page */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-20 left-10 w-20 h-20 bg-black rounded-full animate-bounce" style={{ animationDelay: '0s', animationDuration: '4s' }}></div>
+        <div className="absolute top-40 right-20 w-16 h-16 bg-black rounded-full animate-bounce" style={{ animationDelay: '1.5s', animationDuration: '5s' }}></div>
+        <div className="absolute bottom-32 left-1/4 w-12 h-12 bg-black rounded-full animate-bounce" style={{ animationDelay: '3s', animationDuration: '6s' }}></div>
+        <div className="absolute bottom-20 right-1/3 w-14 h-14 bg-black rounded-full animate-bounce" style={{ animationDelay: '2s', animationDuration: '4.5s' }}></div>
       </div>
 
       <div className="text-center relative z-10 px-6 max-w-lg mx-auto">
         {/* Main Loading Circle */}
         <div className="relative mb-12 animate-fade-in">
           <div className="w-40 h-40 mx-auto relative">
-            {/* Outer glow ring */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-adac-orange to-adac-yellow-dark opacity-20 animate-pulse"></div>
+            {/* Outer glow ring - black theme */}
+            <div className="absolute inset-0 rounded-full bg-black/10 animate-pulse"></div>
             
             {/* Progress ring */}
             <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
@@ -76,7 +76,7 @@ const LoadingScreen = () => {
                 cx="50"
                 cy="50"
                 r="45"
-                stroke="rgba(255,255,255,0.2)"
+                stroke="rgba(0,0,0,0.15)"
                 strokeWidth="3"
                 fill="none"
               />
@@ -84,20 +84,14 @@ const LoadingScreen = () => {
                 cx="50"
                 cy="50"
                 r="45"
-                stroke="url(#gradient)"
+                stroke="rgba(0,0,0,0.8)"
                 strokeWidth="3"
                 fill="none"
                 strokeLinecap="round"
                 strokeDasharray={`${2 * Math.PI * 45}`}
                 strokeDashoffset={`${2 * Math.PI * 45 * (1 - progress / 100)}`}
-                className="transition-all duration-300 ease-out"
+                className="transition-all duration-500 ease-out"
               />
-              <defs>
-                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="hsl(var(--adac-orange))" />
-                  <stop offset="100%" stopColor="hsl(var(--adac-yellow))" />
-                </linearGradient>
-              </defs>
             </svg>
             
             {/* Center content */}
@@ -106,7 +100,7 @@ const LoadingScreen = () => {
                 <div className={`mb-2 transition-all duration-300 ${currentStep.color}`}>
                   <IconComponent className="w-8 h-8 mx-auto animate-pulse" />
                 </div>
-                <div className="text-2xl font-bold text-foreground">
+                <div className="text-2xl font-bold text-black">
                   {Math.round(progress)}%
                 </div>
               </div>
@@ -117,12 +111,12 @@ const LoadingScreen = () => {
         {/* Progress Bar */}
         <div className="mb-8 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
           <div className="w-full max-w-sm mx-auto mb-6">
-            <div className="h-2 bg-white/20 rounded-full overflow-hidden backdrop-blur-sm">
+            <div className="h-3 bg-black/10 rounded-full overflow-hidden backdrop-blur-sm">
               <div 
-                className="h-full bg-gradient-to-r from-adac-orange to-adac-yellow transition-all duration-500 ease-out rounded-full relative"
+                className="h-full bg-black transition-all duration-700 ease-out rounded-full relative"
                 style={{ width: `${progress}%` }}
               >
-                <div className="absolute inset-0 bg-white/30 animate-pulse rounded-full"></div>
+                <div className="absolute inset-0 bg-white/20 animate-pulse rounded-full"></div>
               </div>
             </div>
           </div>
@@ -131,13 +125,13 @@ const LoadingScreen = () => {
         {/* Dynamic Loading Text */}
         <div className="mb-12 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
           <div className={`transition-all duration-300 ${isTextFading ? 'opacity-0 transform translate-y-2' : 'opacity-100 transform translate-y-0'}`}>
-            <p className="text-lg font-semibold text-foreground mb-2">
+            <p className="text-lg font-semibold text-black mb-2">
               {currentStep.text}
             </p>
-            <div className="flex items-center justify-center gap-2 text-sm text-foreground/70">
-              <div className="w-1 h-1 bg-foreground/40 rounded-full animate-pulse"></div>
-              <div className="w-1 h-1 bg-foreground/40 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-              <div className="w-1 h-1 bg-foreground/40 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+            <div className="flex items-center justify-center gap-2 text-sm text-black/50">
+              <div className="w-1 h-1 bg-black/40 rounded-full animate-pulse"></div>
+              <div className="w-1 h-1 bg-black/40 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+              <div className="w-1 h-1 bg-black/40 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
             </div>
           </div>
         </div>
@@ -153,13 +147,13 @@ const LoadingScreen = () => {
               <div key={index} className="flex flex-col items-center gap-2">
                 <div className={`
                   w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300
-                  ${isCompleted ? 'bg-green-500 shadow-lg shadow-green-500/25' : 
-                    isActive ? 'bg-gradient-to-r from-adac-orange to-adac-yellow shadow-lg shadow-adac-orange/25 animate-pulse' : 
-                    'bg-white/20 backdrop-blur-sm'}
+                  ${isCompleted ? 'bg-black shadow-lg shadow-black/25' : 
+                    isActive ? 'bg-black/80 shadow-lg shadow-black/25 animate-pulse' : 
+                    'bg-black/20 backdrop-blur-sm'}
                 `}>
-                  <StepIcon className={`w-5 h-5 ${isCompleted ? 'text-white' : isActive ? 'text-white' : 'text-foreground/60'}`} />
+                  <StepIcon className={`w-5 h-5 ${isCompleted ? 'text-white' : isActive ? 'text-white' : 'text-black/60'}`} />
                 </div>
-                <div className={`w-2 h-2 rounded-full transition-all duration-300 ${isCompleted ? 'bg-green-500' : isActive ? 'bg-adac-orange animate-pulse' : 'bg-white/30'}`}></div>
+                <div className={`w-2 h-2 rounded-full transition-all duration-300 ${isCompleted ? 'bg-black' : isActive ? 'bg-black/80 animate-pulse' : 'bg-black/20'}`}></div>
               </div>
             );
           })}
@@ -168,12 +162,12 @@ const LoadingScreen = () => {
         {/* Completion Message */}
         {progress >= 100 && (
           <div className="mt-8 animate-fade-in">
-            <div className="glass-effect rounded-2xl p-6 border border-white/20">
+            <div className="glass-effect rounded-2xl p-6 border border-black/20 bg-white/20">
               <div className="flex items-center justify-center gap-3 mb-3">
-                <Check className="w-6 h-6 text-green-500" />
-                <span className="text-lg font-semibold text-foreground">Abgeschlossen!</span>
+                <Check className="w-6 h-6 text-black" />
+                <span className="text-lg font-semibold text-black">Abgeschlossen!</span>
               </div>
-              <p className="text-sm text-foreground/70">
+              <p className="text-sm text-black/70">
                 Weiterleitung zum Geschenke-Shop...
               </p>
             </div>
