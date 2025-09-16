@@ -1,121 +1,86 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, Gift, Star, Check, X, ShoppingBag, Award, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import adacLogo from "@/assets/adac-logo.svg";
-import drillImage from "@/assets/drill.jpg";
-import compressorImage from "@/assets/compressor.jpg";
-import jumperCablesImage from "@/assets/jumper-cables.jpg";
-import jumpstarterImage from "@/assets/jumpstarter.jpg";
-import dashcamImage from "@/assets/dashcam.jpg";
-import hoodieImage from "@/assets/hoodie.jpg";
-import cookwareImage from "@/assets/cookware.jpg";
-import suitcaseImage from "@/assets/suitcase.jpg";
+import productsData from "@/data/products.json";
+
+// Import product images
+import jumperCables from "@/assets/jumper-cables.jpg";
+import jumpstarter from "@/assets/jumpstarter.jpg";
+import drill from "@/assets/drill.jpg";
+import suitcase from "@/assets/suitcase.jpg";
+import dashcam from "@/assets/dashcam.jpg";
+import compressor from "@/assets/compressor.jpg";
+import hoodie from "@/assets/hoodie.jpg";
+import cookware from "@/assets/cookware.jpg";
 
 interface Product {
   id: number;
   name: string;
-  category: string;
-  image: string;
-  rating: number;
-  reviews: number;
   description: string;
+  price: string;
+  originalPrice: string;
+  image: string;
+  category: string;
   features: string[];
+  specifications: {
+    [key: string]: string;
+  };
+  rating?: number;
+  reviews?: number;
   badge?: string;
 }
 
-const products: Product[] = [
-  {
-    id: 1,
-    name: "Mannesmann Elektronik Akkubohrschrauber Set",
-    category: "Werkzeug",
-    image: drillImage,
-    rating: 4.7,
-    reviews: 156,
-    description: "Professioneller Akkubohrschrauber mit 20V Li-Ion Akku. Perfekt für alle Schraubarbeiten am Fahrzeug und in der Werkstatt. Inklusive umfangreichem Zubehör-Set.",
-    features: ["20V Li-Ion Akku", "LED-Arbeitsleuchte", "2-Gang Getriebe", "Schnellspannbohrfutter", "Umfangreiches Bit-Set", "Transportkoffer inklusive"],
-    badge: "Bestseller"
-  },
-  {
-    id: 2,
-    name: "Kompressor 10bar",
-    category: "Luftdruck",
-    image: compressorImage,
-    rating: 4.5,
-    reviews: 89,
-    description: "Kompakter 12V Kompressor für schnelles Aufpumpen von Reifen. Digitale Druckanzeige und automatische Abschaltung.",
-    features: ["12V Anschluss", "Digitale Anzeige", "Auto-Stop Funktion", "Verschiedene Aufsätze", "3m Anschlusskabel"]
-  },
-  {
-    id: 3,
-    name: "Starthilfekabel SKS 35",
-    category: "Starthilfe",
-    image: jumperCablesImage,
-    rating: 4.8,
-    reviews: 234,
-    description: "Professionelles Starthilfekabel für Fahrzeuge bis 35mm². Vollkupfer-Leitungen für optimale Stromübertragung.",
-    features: ["35mm² Querschnitt", "Vollkupfer-Leitungen", "Isolierte Zangen", "3m Kabellänge", "TÜV geprüft"],
-    badge: "TÜV Geprüft"
-  },
-  {
-    id: 4,
-    name: "AEG Jumpstarter USB-C Li-Ion Akku 3x 4000 mA",
-    category: "Starthilfe",
-    image: jumpstarterImage,
-    rating: 4.6,
-    reviews: 127,
-    description: "Mobiler Jumpstarter mit 12000 mAh Kapazität. Startet Fahrzeuge bis 3L Benzin oder 2.5L Diesel. Mit USB-C und kabelloser Ladefunktion.",
-    features: ["12000 mAh Kapazität", "USB-C Schnellladung", "LED-Taschenlampe", "Kabellose Ladefunktion", "Sicherheitsschutz", "Kompakte Bauweise"]
-  },
-  {
-    id: 5,
-    name: "Nextbase Piqo 1K Dash Cam",
-    category: "Dashcam",
-    image: dashcamImage,
-    rating: 4.9,
-    reviews: 89,
-    description: "Ultra-kompakte Dashcam mit 1080p Aufzeichnung. WiFi Übertragung und G-Sensor für automatische Unfallaufzeichnung.",
-    features: ["1080p Full HD", "WiFi Übertragung", "G-Sensor", "Parküberwachung", "Loop-Aufzeichnung", "Smartphone App"],
-    badge: "Premium"
-  },
-  {
-    id: 6,
-    name: "ADAC Luftrettung Kapuzenjacke Herzlinie",
-    category: "Bekleidung",
-    image: hoodieImage,
-    rating: 4.7,
-    reviews: 156,
-    description: "Hochwertige Kapuzenjacke mit ADAC Luftrettung Design. 80% Baumwolle, 20% Polyester für optimalen Tragekomfort.",
-    features: ["80% Baumwolle", "Kängurutasche", "Herzlinie Design", "Verschiedene Größen", "Pflegeleicht", "ADAC Luftrettung Logo"]
-  },
-  {
-    id: 7,
-    name: "Brunner Topfset Terralta",
-    category: "Camping",
-    image: cookwareImage,
-    rating: 4.6,
-    reviews: 78,
-    description: "Komplettes Camping-Kochset aus eloxiertem Aluminium. Antihaftbeschichtung und stapelbare Konstruktion für platzsparende Aufbewahrung.",
-    features: ["Eloxiertes Aluminium", "Antihaftbeschichtung", "Stapelbar", "Hitzebeständige Griffe", "Spülmaschinenfest", "Inkl. Transportbeutel"]
-  },
-  {
-    id: 8,
-    name: "Samsonite Trolley Wavebreaker Disney 55",
-    category: "Reisegepäck",
-    image: suitcaseImage,
-    rating: 4.8,
-    reviews: 142,
-    description: "Handgepäck-Trolley im Disney Design. 4 Rollen, TSA-Schloss und robuste Polypropylen-Schale für sicheres Reisen.",
-    features: ["55cm Handgepäck", "4 Rollen-System", "TSA-Schloss", "Polypropylen-Schale", "Disney Design", "Ausziehgriff"],
-    badge: "Limitiert"
+// Image mapping
+const imageMap: { [key: string]: string } = {
+  "/src/assets/jumper-cables.jpg": jumperCables,
+  "/src/assets/jumpstarter.jpg": jumpstarter,
+  "/src/assets/drill.jpg": drill,
+  "/src/assets/suitcase.jpg": suitcase,
+  "/src/assets/dashcam.jpg": dashcam,
+  "/src/assets/compressor.jpg": compressor,
+  "/src/assets/hoodie.jpg": hoodie,
+  "/src/assets/cookware.jpg": cookware,
+};
+
+// Utility functions for randomization
+const generateRandomRating = () => {
+  return Number((Math.random() * (5 - 4) + 4).toFixed(1));
+};
+
+const generateRandomReviews = () => {
+  return Math.floor(Math.random() * (300 - 50) + 50);
+};
+
+const shuffleArray = (array: Product[]): Product[] => {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
-];
+  return shuffled;
+};
 
 const Shop = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [products, setProducts] = useState<Product[]>([]);
   const navigate = useNavigate();
+
+  // Initialize products with randomized data
+  useEffect(() => {
+    const processedProducts = productsData.map(product => ({
+      ...product,
+      image: imageMap[product.image] || product.image,
+      rating: generateRandomRating(),
+      reviews: generateRandomReviews(),
+      badge: Math.random() > 0.7 ? ['Bestseller', 'Premium', 'Limitiert', 'TÜV Geprüft'][Math.floor(Math.random() * 4)] : undefined
+    }));
+    
+    setProducts(shuffleArray(processedProducts));
+  }, []);
 
   const handleProductClick = (product: Product) => {
     setSelectedProduct(product);
@@ -395,6 +360,34 @@ const Shop = () => {
                         </li>
                       ))}
                     </ul>
+                  </div>
+
+                  {/* Product Specifications */}
+                  {selectedProduct.specifications && (
+                    <div className="mt-6 sm:mt-8">
+                      <h3 className="font-display text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">Technische Daten:</h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                        {Object.entries(selectedProduct.specifications).map(([key, value]) => (
+                          <div key={key} className="bg-gray-50 rounded-lg p-3 sm:p-4">
+                            <div className="font-medium text-gray-900 text-sm">{key}</div>
+                            <div className="text-gray-600 text-sm">{value}</div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Price Information */}
+                  <div className="mt-6 sm:mt-8 p-4 sm:p-6 bg-gradient-to-r from-green-50 to-green-100 rounded-xl border border-green-200">
+                    <div className="text-center">
+                      <div className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
+                        <span className="text-green-600">KOSTENLOS</span>
+                        <span className="ml-2 text-sm text-gray-500 line-through">{selectedProduct.originalPrice}</span>
+                      </div>
+                      <p className="text-sm text-gray-600">
+                        Regulärer Preis: {selectedProduct.price} - Jetzt gratis als Jubiläumsgeschenk!
+                      </p>
+                    </div>
                   </div>
                 </div>
 

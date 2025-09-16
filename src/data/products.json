@@ -1,0 +1,170 @@
+[
+  {
+    "id": 1,
+    "name": "Premium Jumper Cables",
+    "description": "Heavy-duty jumper cables for reliable emergency starts",
+    "price": "€29.99",
+    "originalPrice": "€39.99",
+    "image": "/src/assets/jumper-cables.jpg",
+    "category": "Emergency",
+    "features": [
+      "Heavy-duty construction",
+      "Extra long cables",
+      "Professional grade clamps",
+      "Weather resistant"
+    ],
+    "specifications": {
+      "Length": "4 meters",
+      "Gauge": "6 AWG",
+      "Clamp Material": "Copper-plated steel",
+      "Temperature Range": "-40°C to +80°C"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Portable Jump Starter",
+    "description": "Compact jump starter with USB charging capability",
+    "price": "€89.99",
+    "originalPrice": "€119.99",
+    "image": "/src/assets/jumpstarter.jpg",
+    "category": "Emergency",
+    "features": [
+      "12V jump start capability",
+      "USB charging ports",
+      "LED flashlight",
+      "Compact design"
+    ],
+    "specifications": {
+      "Battery Capacity": "12000mAh",
+      "Peak Current": "400A",
+      "USB Ports": "2x USB-A",
+      "Weight": "0.6kg"
+    }
+  },
+  {
+    "id": 3,
+    "name": "Professional Toolkit",
+    "description": "Complete toolkit for automotive repairs and maintenance",
+    "price": "€49.99",
+    "originalPrice": "€69.99",
+    "image": "/src/assets/drill.jpg",
+    "category": "Tools",
+    "features": [
+      "72-piece tool set",
+      "Chrome vanadium steel",
+      "Organized carrying case",
+      "Lifetime warranty"
+    ],
+    "specifications": {
+      "Pieces": "72 tools",
+      "Case Material": "Heavy-duty plastic",
+      "Socket Sizes": "8mm-19mm",
+      "Ratchet Drive": "1/4\" & 3/8\""
+    }
+  },
+  {
+    "id": 4,
+    "name": "Travel Suitcase Set",
+    "description": "Durable luggage set perfect for road trips",
+    "price": "€159.99",
+    "originalPrice": "€199.99",
+    "image": "/src/assets/suitcase.jpg",
+    "category": "Travel",
+    "features": [
+      "3-piece luggage set",
+      "360° spinner wheels",
+      "TSA-approved locks",
+      "Expandable compartments"
+    ],
+    "specifications": {
+      "Sizes": "20\", 24\", 28\"",
+      "Material": "ABS + PC",
+      "Weight": "2.5kg, 3.2kg, 4.1kg",
+      "Capacity": "35L, 65L, 95L"
+    }
+  },
+  {
+    "id": 5,
+    "name": "HD Dashcam",
+    "description": "High-definition dashboard camera with night vision",
+    "price": "€79.99",
+    "originalPrice": "€99.99",
+    "image": "/src/assets/dashcam.jpg",
+    "category": "Electronics",
+    "features": [
+      "4K Ultra HD recording",
+      "Night vision technology",
+      "G-sensor protection",
+      "Loop recording"
+    ],
+    "specifications": {
+      "Resolution": "4K @ 30fps",
+      "Storage": "Up to 128GB microSD",
+      "Field of View": "170° wide angle",
+      "Screen Size": "3 inch LCD"
+    }
+  },
+  {
+    "id": 6,
+    "name": "Tire Air Compressor",
+    "description": "Portable digital tire inflator for emergencies",
+    "price": "€34.99",
+    "originalPrice": "€49.99",
+    "image": "/src/assets/compressor.jpg",
+    "category": "Emergency",
+    "features": [
+      "Digital pressure gauge",
+      "Auto shut-off function",
+      "LED work light",
+      "12V DC power"
+    ],
+    "specifications": {
+      "Max Pressure": "150 PSI",
+      "Power": "12V DC (car adapter)",
+      "Cord Length": "3 meters",
+      "Inflate Time": "3-5 minutes (standard tire)"
+    }
+  },
+  {
+    "id": 7,
+    "name": "ADAC Hoodie",
+    "description": "Official ADAC branded hoodie - comfortable and stylish",
+    "price": "€39.99",
+    "originalPrice": "€54.99",
+    "image": "/src/assets/hoodie.jpg",
+    "category": "Apparel",
+    "features": [
+      "Official ADAC branding",
+      "Premium cotton blend",
+      "Comfortable fit",
+      "Machine washable"
+    ],
+    "specifications": {
+      "Material": "80% Cotton, 20% Polyester",
+      "Sizes": "S, M, L, XL, XXL",
+      "Color": "Navy Blue",
+      "Care": "Machine wash cold"
+    }
+  },
+  {
+    "id": 8,
+    "name": "Premium Cookware Set",
+    "description": "Professional-grade cookware for camping and travel",
+    "price": "€69.99",
+    "originalPrice": "€89.99",
+    "image": "/src/assets/cookware.jpg",
+    "category": "Camping",
+    "features": [
+      "Non-stick coating",
+      "Stackable design",
+      "Heat-resistant handles",
+      "Dishwasher safe"
+    ],
+    "specifications": {
+      "Pieces": "8-piece set",
+      "Material": "Aluminum with non-stick coating",
+      "Handle Material": "Heat-resistant silicone",
+      "Suitable for": "Gas, electric, induction"
+    }
+  }
+]
