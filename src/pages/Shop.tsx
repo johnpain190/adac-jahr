@@ -291,8 +291,8 @@ const Shop = () => {
         <DialogContent className="max-w-[95vw] sm:max-w-[90vw] lg:max-w-6xl bg-white p-0 overflow-hidden z-50 border-0 rounded-xl lg:rounded-2xl shadow-2xl max-h-[95vh] flex flex-col">
           {selectedProduct && (
             <div className="flex flex-col lg:flex-row h-full">
-              {/* Right side - Image (shown first) */}
-              <div className="lg:w-2/5 relative min-h-[200px] lg:min-h-[500px]">
+              {/* Top/Left side - Image (smaller) */}
+              <div className="lg:w-1/3 relative h-48 sm:h-56 lg:h-80">
                 <img 
                   src={selectedProduct.image} 
                   alt={selectedProduct.name}
@@ -300,9 +300,9 @@ const Shop = () => {
                 />
               </div>
 
-              {/* Left side - Content */}
-              <div className="flex-1 lg:w-3/5 p-4 sm:p-6 overflow-y-auto">
-                <div className="space-y-4">
+              {/* Bottom/Right side - Content */}
+              <div className="flex-1 lg:w-2/3 p-4 sm:p-6">
+                <div className="space-y-3">
                   {/* Header */}
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
@@ -316,19 +316,19 @@ const Shop = () => {
                           </Badge>
                         )}
                       </div>
-                      <h2 className="font-display text-xl lg:text-2xl font-bold text-gray-900 leading-tight">
+                      <h2 className="font-display text-lg lg:text-xl font-bold text-gray-900 leading-tight">
                         {selectedProduct.name}
                       </h2>
                     </div>
                   </div>
 
                   {/* Rating */}
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2">
                     <div className="flex items-center">
                       {[...Array(5)].map((_, i) => (
                         <Star
                           key={i}
-                          className={`w-4 h-4 ${
+                          className={`w-3.5 h-3.5 ${
                             i < Math.floor(selectedProduct.rating)
                               ? 'text-yellow-400 fill-current'
                               : 'text-gray-300'
@@ -336,10 +336,10 @@ const Shop = () => {
                         />
                       ))}
                     </div>
-                    <span className="font-semibold text-gray-900">
+                    <span className="font-semibold text-gray-900 text-sm">
                       {selectedProduct.rating}
                     </span>
-                    <span className="text-sm text-gray-500">
+                    <span className="text-xs text-gray-500">
                       ({selectedProduct.reviews} Bewertungen)
                     </span>
                   </div>
@@ -349,24 +349,24 @@ const Shop = () => {
                     {selectedProduct.description}
                   </p>
 
-                  {/* Features - Compact */}
+                  {/* Features - More Compact */}
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Eigenschaften:</h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {selectedProduct.features.slice(0, 6).map((feature, index) => (
-                        <div key={index} className="flex items-start gap-2">
-                          <Check className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                          <span className="text-gray-700 text-sm">{feature}</span>
+                    <h3 className="font-semibold text-gray-900 mb-2 text-sm">Eigenschaften:</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                      {selectedProduct.features.slice(0, 4).map((feature, index) => (
+                        <div key={index} className="flex items-start gap-1.5">
+                          <Check className="w-3.5 h-3.5 text-green-600 mt-0.5 flex-shrink-0" />
+                          <span className="text-gray-700 text-xs">{feature}</span>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  {/* Specifications - Compact */}
+                  {/* Specifications - More Compact */}
                   {selectedProduct.specifications && (
                     <div>
-                      <h3 className="font-semibold text-gray-900 mb-2">Technische Daten:</h3>
-                      <div className="grid grid-cols-2 gap-2">
+                      <h3 className="font-semibold text-gray-900 mb-2 text-sm">Technische Daten:</h3>
+                      <div className="grid grid-cols-2 gap-1.5">
                         {Object.entries(selectedProduct.specifications).slice(0, 4).map(([key, value]) => (
                           <div key={key} className="bg-gray-50 rounded-lg p-2">
                             <div className="font-medium text-gray-900 text-xs">{key}</div>
@@ -380,9 +380,9 @@ const Shop = () => {
                   {/* Action Button */}
                   <Button 
                     onClick={() => handleSelectGift(selectedProduct)}
-                    className="w-full gift-button text-white font-bold py-3 text-base"
+                    className="w-full gift-button text-white font-bold py-2.5 text-sm mt-4"
                   >
-                    <Gift className="w-5 h-5 mr-2" />
+                    <Gift className="w-4 h-4 mr-2" />
                     Dieses Geschenk auswählen
                   </Button>
                 </div>
