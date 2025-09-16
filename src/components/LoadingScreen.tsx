@@ -48,6 +48,15 @@ const LoadingScreen = () => {
     <div className="min-h-screen adac-gradient flex items-center justify-center relative overflow-hidden"
          style={{ background: 'linear-gradient(135deg, hsl(45, 93%, 58%), hsl(42, 89%, 48%))' }}>
       <div className="text-center animate-fade-in relative z-10">
+        {/* ADAC Header */}
+        <div className="mb-12 animate-fade-in-up">
+          <h1 className="text-6xl md:text-7xl font-black text-black mb-2 tracking-wider">
+            ADAC
+          </h1>
+          <p className="text-lg text-black font-medium">
+            Fahrzeugausstattung & Zubehör
+          </p>
+        </div>
 
         {/* Loading Circle */}
         <div className="relative mb-8 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
@@ -109,6 +118,18 @@ const LoadingScreen = () => {
         </div>
       </div>
 
+      {/* Background decoration */}
+      <div className="absolute bottom-4 right-4 opacity-20">
+        <div className="text-right">
+          <h2 className="text-2xl font-black text-black mb-1">ADAC</h2>
+          <div className="flex space-x-1 justify-end">
+            <div className="w-2 h-2 bg-black rounded-full"></div>
+            <div className="w-2 h-2 bg-black rounded-full"></div>
+            <div className="w-2 h-2 bg-black rounded-full animate-pulse"></div>
+            <div className="w-2 h-2 bg-black rounded-full"></div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
