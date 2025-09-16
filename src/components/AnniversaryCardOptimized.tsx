@@ -1,37 +1,15 @@
-import { useState, useCallback, memo, useContext, createContext } from "react";
+import { useState, useCallback, memo } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { Gift, Check, Truck, Star, Shield } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 import LoadingScreen from "./LoadingScreen";
-
-// Create a context for user data
-const UserContext = createContext<{ email: string; setEmail: (email: string) => void } | null>(null);
-
-export const UserProvider = ({ children }: { children: React.ReactNode }) => {
-  const [email, setEmail] = useState("");
-  return (
-    <UserContext.Provider value={{ email, setEmail }}>
-      {children}
-    </UserContext.Provider>
-  );
-};
-
-export const useUser = () => {
-  const context = useContext(UserContext);
-  if (!context) {
-    throw new Error("useUser must be used within UserProvider");
-  }
-  return context;
-};
 
 const AnniversaryCardOptimized = memo(() => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
 
   const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
