@@ -45,7 +45,8 @@ const LoadingScreen = () => {
   }, [navigate]);
 
   return (
-    <div className="min-h-screen adac-gradient flex items-center justify-center relative overflow-hidden">
+    <div className="min-h-screen adac-gradient flex items-center justify-center relative overflow-hidden"
+         style={{ background: 'linear-gradient(135deg, hsl(45, 93%, 58%), hsl(42, 89%, 48%))' }}>
       <div className="text-center animate-fade-in relative z-10">
         {/* ADAC Header */}
         <div className="mb-12 animate-fade-in-up">
