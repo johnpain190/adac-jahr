@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ArrowLeft, Gift, Star, Check, X, ShoppingBag, Award, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -114,6 +115,7 @@ const products: Product[] = [
 
 const Shop = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const navigate = useNavigate();
 
   const handleProductClick = (product: Product) => {
     setSelectedProduct(product);
@@ -135,7 +137,10 @@ const Shop = () => {
         <div className="container mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 sm:gap-3">
-              <button className="p-1.5 sm:p-2 hover:bg-white/10 rounded-lg transition-colors">
+              <button 
+                className="p-1.5 sm:p-2 hover:bg-white/10 rounded-lg transition-colors"
+                onClick={() => navigate('/')}
+              >
                 <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 text-foreground" />
               </button>
               <div className="flex items-center gap-2 sm:gap-3">
