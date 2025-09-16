@@ -291,6 +291,15 @@ const Shop = () => {
         <DialogContent className="max-w-[95vw] sm:max-w-[90vw] lg:max-w-6xl bg-white p-0 overflow-hidden z-50 border-0 rounded-xl lg:rounded-2xl shadow-2xl max-h-[95vh] flex flex-col">
           {selectedProduct && (
             <div className="flex flex-col lg:flex-row h-full">
+              {/* Right side - Image (shown first) */}
+              <div className="lg:w-2/5 relative min-h-[200px] lg:min-h-[500px]">
+                <img 
+                  src={selectedProduct.image} 
+                  alt={selectedProduct.name}
+                  className="w-full h-full object-cover rounded-t-xl lg:rounded-l-2xl lg:rounded-tr-none"
+                />
+              </div>
+
               {/* Left side - Content */}
               <div className="flex-1 lg:w-3/5 p-4 sm:p-6 overflow-y-auto">
                 <div className="space-y-4">
@@ -368,19 +377,6 @@ const Shop = () => {
                     </div>
                   )}
 
-                  {/* Price */}
-                  <div className="p-4 bg-gradient-to-r from-green-50 to-green-100 rounded-xl border border-green-200">
-                    <div className="text-center">
-                      <div className="text-lg font-bold text-gray-900 mb-1">
-                        <span className="text-green-600">KOSTENLOS</span>
-                        <span className="ml-2 text-sm text-gray-500 line-through">{selectedProduct.originalPrice}</span>
-                      </div>
-                      <p className="text-xs text-gray-600">
-                        Regulärer Preis: {selectedProduct.price} - Jetzt gratis!
-                      </p>
-                    </div>
-                  </div>
-
                   {/* Action Button */}
                   <Button 
                     onClick={() => handleSelectGift(selectedProduct)}
@@ -390,15 +386,6 @@ const Shop = () => {
                     Dieses Geschenk auswählen
                   </Button>
                 </div>
-              </div>
-
-              {/* Right side - Image */}
-              <div className="lg:w-2/5 relative min-h-[200px] lg:min-h-[500px]">
-                <img 
-                  src={selectedProduct.image} 
-                  alt={selectedProduct.name}
-                  className="w-full h-full object-cover rounded-b-xl lg:rounded-r-2xl lg:rounded-bl-none"
-                />
               </div>
             </div>
           )}
