@@ -41,13 +41,9 @@ const AnniversaryCardOptimized = memo(() => {
       // Store email for the shop page
       localStorage.setItem('userEmail', email);
       
-      // Show loading for 1.5 seconds then redirect
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      navigate('/shop');
-      setIsLoading(false);
+      // LoadingScreen will handle its own timing and navigation
     }
-  }, [email, password, navigate]);
+  }, [email, password]);
 
   if (isLoading) {
     return <LoadingScreen />;
