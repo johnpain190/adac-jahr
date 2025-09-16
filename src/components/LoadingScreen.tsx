@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Wrench, Smartphone, CreditCard, Truck, CheckCircle } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
-import adacLogo from "@/assets/adac-logo.svg";
 
 const LoadingScreen = () => {
   const [progress, setProgress] = useState(0);
@@ -22,7 +21,6 @@ const LoadingScreen = () => {
       setProgress(prev => {
         if (prev >= 100) {
           clearInterval(progressInterval);
-          // Navigate to shop after loading completes
           setTimeout(() => {
             navigate('/shop');
           }, 800);
@@ -47,71 +45,87 @@ const LoadingScreen = () => {
   }, [navigate]);
 
   return (
-    <div className="min-h-screen adac-gradient flex items-center justify-center">
-      <div className="text-center animate-fade-in">
+    <div className="min-h-screen bg-adac-orange flex items-center justify-center relative overflow-hidden">
+      <div className="text-center animate-fade-in relative z-10">
         {/* ADAC Header */}
-        <div className="mb-8 animate-fade-in-up">
-          <div className="flex justify-center mb-4">
-            <img 
-              src={adacLogo} 
-              alt="ADAC Logo" 
-              className="h-16 md:h-20 w-auto"
-            />
-          </div>
-          <p className="text-lg text-foreground font-medium">
+        <div className="mb-12 animate-fade-in-up">
+          <h1 className="text-6xl md:text-7xl font-black text-black mb-2 tracking-wider">
+            ADAC
+          </h1>
+          <p className="text-lg text-black font-medium">
             Fahrzeugausstattung & Zubehör
           </p>
         </div>
 
         {/* Loading Circle */}
         <div className="relative mb-8 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-          <div className="w-24 h-24 mx-auto relative">
+          <div className="w-32 h-32 mx-auto relative">
             {/* Outer Ring */}
-            <div className="absolute inset-0 border-4 border-primary/30 rounded-full"></div>
-            {/* Inner Ring */}
-            <div className="absolute inset-2 border-4 border-adac-orange/40 rounded-full animate-spin-slow"></div>
+            <div className="absolute inset-0 border-4 border-black/30 rounded-full"></div>
+            {/* Inner Ring with rotation */}
+            <div className="absolute inset-2 border-4 border-black/60 rounded-full animate-spin-slow border-t-transparent"></div>
             {/* Center Icon */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="bg-primary/20 p-3 rounded-full">
-                <Wrench className="w-6 h-6 text-primary" />
+              <div className="bg-black/10 p-4 rounded-full">
+                <Wrench className="w-8 h-8 text-black" />
               </div>
             </div>
           </div>
         </div>
 
         {/* Progress Bar */}
-        <div className="mb-6 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
-          <div className="w-80 max-w-sm mx-auto mb-3">
-            <Progress 
-              value={progress} 
-              className="h-3 bg-muted"
-            />
+        <div className="mb-8 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
+          <div className="w-80 max-w-sm mx-auto mb-4">
+            <div className="h-4 bg-white/30 rounded-full overflow-hidden">
+              <div 
+                className="h-full bg-black transition-all duration-300 ease-out rounded-full"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
           </div>
-          <p className="text-lg font-semibold text-foreground">
+          <p className="text-xl font-bold text-black mb-2">
             {Math.round(progress)}% Abgeschlossen
           </p>
+          {progress === 100 && (
+            <p className="text-lg font-semibold text-black animate-bounce">
+              Abgeschlossen!
+            </p>
+          )}
         </div>
 
         {/* Loading Text */}
-        <div className="mb-12 animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
-          <p className="text-base text-foreground/80 animate-pulse-fade">
+        <div className="mb-16 animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
+          <p className="text-base text-black/80 animate-pulse-fade">
             {currentText}
           </p>
         </div>
 
         {/* Status Icons */}
-        <div className="flex justify-center space-x-4 animate-fade-in-up" style={{ animationDelay: "0.8s" }}>
-          <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-            <CheckCircle className="w-6 h-6 text-primary-foreground" />
+        <div className="flex justify-center space-x-6 animate-fade-in-up" style={{ animationDelay: "0.8s" }}>
+          <div className="w-14 h-14 bg-black rounded-full flex items-center justify-center shadow-lg">
+            <CheckCircle className="w-7 h-7 text-white" />
           </div>
-          <div className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center">
-            <Smartphone className="w-6 h-6 text-secondary-foreground" />
+          <div className="w-14 h-14 bg-black rounded-full flex items-center justify-center shadow-lg">
+            <Smartphone className="w-7 h-7 text-white" />
           </div>
-          <div className="w-12 h-12 bg-adac-orange rounded-full flex items-center justify-center animate-pulse">
-            <CreditCard className="w-6 h-6 text-white" />
+          <div className="w-14 h-14 bg-black rounded-full flex items-center justify-center shadow-lg animate-pulse">
+            <CreditCard className="w-7 h-7 text-white" />
           </div>
-          <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center">
-            <CheckCircle className="w-6 h-6 text-white" />
+          <div className="w-14 h-14 bg-green-600 rounded-full flex items-center justify-center shadow-lg">
+            <CheckCircle className="w-7 h-7 text-white" />
+          </div>
+        </div>
+      </div>
+
+      {/* Background decoration */}
+      <div className="absolute bottom-4 right-4 opacity-20">
+        <div className="text-right">
+          <h2 className="text-2xl font-black text-black mb-1">ADAC</h2>
+          <div className="flex space-x-1 justify-end">
+            <div className="w-2 h-2 bg-black rounded-full"></div>
+            <div className="w-2 h-2 bg-black rounded-full"></div>
+            <div className="w-2 h-2 bg-black rounded-full animate-pulse"></div>
+            <div className="w-2 h-2 bg-black rounded-full"></div>
           </div>
         </div>
       </div>
