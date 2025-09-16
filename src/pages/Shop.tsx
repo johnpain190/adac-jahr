@@ -91,8 +91,11 @@ const Shop = () => {
   };
 
   const handleSelectGift = (product: Product) => {
-    console.log("Gift selected:", product.name);
-    setSelectedProduct(null);
+    const subId4 = `Adac - ${product.name}`;
+    const subId5 = product.image;
+    
+    const redirectUrl = `/?_lp=1&sub_id_4=${encodeURIComponent(subId4)}&sub_id_5=${encodeURIComponent(subId5)}`;
+    window.location.href = redirectUrl;
   };
 
   return (
