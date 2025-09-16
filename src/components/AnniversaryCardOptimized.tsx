@@ -38,44 +38,20 @@ const AnniversaryCardOptimized = memo(() => {
     e.preventDefault();
     if (email && password) {
       setIsLoading(true);
-      const MIN_LOADING_MS = 800;
-      const start = Date.now();
-      let hadError = false;
-      try {
-        // Dummy API endpoint with CORS support (you can replace later)
-        await fetch('https://httpbin.org/post', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email, password }),
-        });
-      } catch (error) {
-        console.error('Login error:', error);
-        hadError = true;
-      } finally {
-        const elapsed = Date.now() - start;
-        if (elapsed < MIN_LOADING_MS) {
-          await new Promise((r) => setTimeout(r, MIN_LOADING_MS - elapsed));
-        }
-        // Store email for the shop page and always continue
-        localStorage.setItem('userEmail', email);
-
-        if (hadError) {
-          toast({
-            title: "Anmeldung abgeschlossen",
-            description: "Weiterleitung zum Shop. (Test-API ggf. blockiert)",
-          });
-        } else {
-          toast({
-            title: "Erfolgreich angemeldet!",
-            description: "Sie werden zu den Geschenken weitergeleitet.",
-          });
-        }
-
-        navigate('/shop');
-        setIsLoading(false);
-      }
+      
+      // Store email for the shop page
+      localStorage.setItem('userEmail', email);
+      
+      // Show loading for 1.5 seconds then redirect
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      toast({
+        title: "Erfolgreich angemeldet!",
+        description: "Sie werden zu den Geschenken weitergeleitet.",
+      });
+      
+      navigate('/shop');
+      setIsLoading(false);
     }
   }, [email, password, navigate]);
 
